@@ -1,65 +1,115 @@
 
-MDScreen:
+BoxLayout:
+    orientation: "vertical"
 
     MDTopAppBar:
-        orientation: "horizontal"
-        padding: "20dp"
-        spacing: "5dp"
         title: "Camera App"
-        pos_hint: {"top": 1}
+        elevation: 4
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
-        MDFlatButton:
-            text: "☰"
-            font_style: "H5"
-            size_hint_y: None
-            height: "30dp"
-            on_release: nav_drawer.set_state("open")
+    MDNavigationLayout:
+        ScreenManager:
+            id: content_manager
 
+            HomeScreen:
+                name: "home"
+
+            GalaryScreen:
+                name: "galary"
+
+            SettingsScreen:
+                name: "settings"
+
+            AboutScreen:
+                name: "about"
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            color: 0, 1, 0, 1
+
+            MDNavigationDrawerMenu:
+                spacing: "10dp"
+
+                MDNavigationDrawerHeader:
+                    title: "Camera App"
+                    text: "CG"
+
+                MDFlatButton:
+                    text: "Home"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: dp(50)
+                    on_release:
+                        content_manager.current = "home"
+                        nav_drawer.set_state("close")
+
+                MDFlatButton:
+                    text: "Galary"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: dp(50)
+                    on_release:
+                        content_manager.current = "galary"
+                        nav_drawer.set_state("close")
+
+                MDFlatButton:
+                    text: "Settings"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    on_release:
+                        content_manager.current = "settings"
+                        nav_drawer.set_state("close")
+
+                MDFlatButton:
+                    text: "About"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    on_release:
+                        content_manager.current = "about"
+                        nav_drawer.set_state("close")
+
+
+<HomeScreen>:
     BoxLayout:
         orientation: "vertical"
         padding: "20dp"
         spacing: "15dp"
 
         MDLabel:
+            id: greeting
             text: "Welcome to my Camera App!"
             halign: "center"
             size_hint_y: None
             height: self.texture_size[1] + dp(20)
-            pos_hint: {"center_y": .8   }
 
 
-    MDNavigationDrawer:
-        id: nav_drawer
-        color: 0, 1, 0, 1
+<GalaryScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
 
-        MDNavigationDrawerMenu:
-            spacing: "10dp"
+        MDLabel:
+            text: "Galary Screen"
+            halign: "center"
 
-            MDNavigationDrawerHeader:
-                title: "Camera App"
-                text: "CG"
+<SettingsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
 
-            MDRaisedButton:
-                text: "Home"
-                size_hint_x: 1
-                size_hint_y: None
+        MDLabel:
+            text: "Settings Screen"
+            halign: "center"
 
-            MDFlatButton:
-                text: "Galary"
-                size_hint_x: 1
-                size_hint_y: None
+<AboutScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
 
-            MDFlatButton:
-                text: "Settings"
-                size_hint_x: 1
-                size_hint_y: None
-
-            MDFlatButton:
-                text: "About"
-                size_hint_x: 1
-                size_hint_y: None
-
-            MDFlatButton:
-                text: "Hello"
-                size_hint_x: 1
-                size_hint_y: None
+        MDLabel:
+            text: "About Screen"
+            halign: "center"
