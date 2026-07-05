@@ -1,25 +1,65 @@
 
 MDScreen:
 
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: "30dp"
-        spacing: "20dp"
+    MDTopAppBar:
+        orientation: "horizontal"
+        padding: "20dp"
+        spacing: "5dp"
+        title: "Camera App"
+        pos_hint: {"top": 1}
 
-        Widget:
-            size_hint_y: .3
+        MDFlatButton:
+            text: "☰"
+            font_style: "H5"
+            size_hint_y: None
+            height: "30dp"
+            on_release: nav_drawer.set_state("open")
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "15dp"
 
         MDLabel:
-            id: greeting
-            text: "Welcome!"
+            text: "Welcome to my Camera App!"
             halign: "center"
-            font_style: "H6"
-            adaptive_height: True
+            size_hint_y: None
+            height: self.texture_size[1] + dp(20)
+            pos_hint: {"center_y": .8   }
 
-        MDRaisedButton:
-            text: "Say Hello"
-            pos_hint: {"center_x": .5}
-            on_release: app.say_hello()
 
-        Widget:
-            size_hint_y: .4
+    MDNavigationDrawer:
+        id: nav_drawer
+        color: 0, 1, 0, 1
+
+        MDNavigationDrawerMenu:
+            spacing: "10dp"
+
+            MDNavigationDrawerHeader:
+                title: "Camera App"
+                text: "CG"
+
+            MDRaisedButton:
+                text: "Home"
+                size_hint_x: 1
+                size_hint_y: None
+
+            MDFlatButton:
+                text: "Galary"
+                size_hint_x: 1
+                size_hint_y: None
+
+            MDFlatButton:
+                text: "Settings"
+                size_hint_x: 1
+                size_hint_y: None
+
+            MDFlatButton:
+                text: "About"
+                size_hint_x: 1
+                size_hint_y: None
+
+            MDFlatButton:
+                text: "Hello"
+                size_hint_x: 1
+                size_hint_y: None
